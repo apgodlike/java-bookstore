@@ -12,7 +12,6 @@ import io.cucumber.junit.CucumberOptions;
     plugin = { "pretty",
     		 "com.book.hooks.StepLogger",
             "json:target/cucumber.json"},
-    monochrome = true,
     tags = "@regression"
 )
 public class TestRunner {
