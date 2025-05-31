@@ -10,7 +10,7 @@ import com.book.api.common.ExtentReportCommon;
 public class UserManagement {
 	
 	private String email;
-	private String password = Config.get("password.value");
+	private String password = "Test@123";//Config.get("password.value");
 	private static UserManagement userManagement;
 	
 	private UserManagement() {}
