@@ -1,0 +1,7 @@
+# Maven target folder
+target/
+
+# IDE settings
+.project
+.classpath
+.settings/
