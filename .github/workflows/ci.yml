@@ -9,12 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: ci-test
     env:
-      # Environment variables that match your Config class expectations
+
       BASE_URI: http://localhost:8000
-      PASSWORD_VALUE: ${{secrets.PASSWORD_VALUE}}
-      # Alternative naming that directly matches property keys
-      base.uri: http://localhost:8000
-      password.value: ${{secrets.PASSWORD_VALUE}}
+     PASSWORD_VALUE: ${{ secrets.PASSWORD_VALUE }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
