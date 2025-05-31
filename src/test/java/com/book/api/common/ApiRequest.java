@@ -9,7 +9,7 @@ public class ApiRequest {
     private String endpoint;
     private String method;
     private Object body;
-    private String pathParams;// = new HashMap<>();
+    private String pathParams;
 
     private Map<String, String> headers = new HashMap<>();
     private Map<String, String> queryParams = new HashMap<>();

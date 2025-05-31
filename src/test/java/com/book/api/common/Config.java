@@ -23,8 +23,6 @@ public class Config {
     }
     
     public static String get(String key) {
-        // First, try to get from environment variables
-        // Convert property key format (base.uri) to env var format (BASE_URI)
         String envKey = key.toUpperCase().replace('.', '_');
         String envValue = System.getenv(envKey);
         
@@ -33,14 +31,12 @@ public class Config {
             return envValue;
         }
         
-        // If not found in env vars, try the original key format
         envValue = System.getenv(key);
         if (envValue != null && !envValue.trim().isEmpty()) {
             System.out.println("Found environment variable " + key + " = " + envValue);
             return envValue;
         }
         
-        // Finally, fall back to properties file
         String propValue = props.getProperty(key);
         if (propValue != null) {
             System.out.println("Found property " + key + " = " + propValue);
@@ -51,17 +47,4 @@ public class Config {
         return null;
     }
     
-    // Helper method to debug what's available
-    public static void debugConfig() {
-        System.out.println("=== Config Debug ===");
-        System.out.println("Environment variables:");
-        System.getenv().entrySet().stream()
-            .filter(entry -> entry.getKey().contains("BASE") || entry.getKey().contains("PASSWORD") || 
-                           entry.getKey().contains("base") || entry.getKey().contains("password"))
-            .forEach(entry -> System.out.println("  " + entry.getKey() + " = " + entry.getValue()));
-        
-        System.out.println("Properties file values:");
-        props.entrySet().forEach(entry -> System.out.println("  " + entry.getKey() + " = " + entry.getValue()));
-        System.out.println("===================");
-    }
 }
