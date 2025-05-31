@@ -58,7 +58,7 @@ jobs:
         run: echo "PASSWORD is $PASSWORD"
 
       - name: Run Maven tests
-        run: mvn test
+        run: mvn test -DBASE_URL=http://localhost:8000 -DPASSWORD=Test@123
 
       - name: Upload Extent Report
         uses: actions/upload-artifact@v4
