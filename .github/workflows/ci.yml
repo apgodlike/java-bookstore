@@ -1,41 +1,40 @@
 name: CI Pipeline
-
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
 jobs:
   test:
     runs-on: ubuntu-latest
-
     environment: ci-test
-
     env:
+      # Environment variables that match your Config class expectations
       BASE_URI: http://localhost:8000
       PASSWORD_VALUE: Test@123
-
+      # Alternative naming that directly matches property keys
+      base.uri: http://localhost:8000
+      password.value: Test@123
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
+      
       - name: Install Python dependencies
         run: |
           cd backend
           pip install -r requirements.txt
-
+      
       - name: Start FastAPI backend
         run: |
           cd backend
           nohup uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
           sleep 5  # Give server some time to boot
-
+      
       - name: Wait for backend health check
         run: |
           echo "Waiting for FastAPI server to be ready..."
@@ -46,20 +45,28 @@ jobs:
             fi
             sleep 3
           done
-
+      
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      # Optional: Comment out if secret is sensitive
-      - name: Debug env
-        run: echo "PASSWORD is $PASSWORD"
-
+      
+      # Debug environment variables
+      - name: Debug environment variables
+        run: |
+          echo "BASE_URI is: $BASE_URI"
+          echo "PASSWORD_VALUE is: $PASSWORD_VALUE"
+          echo "All environment variables:"
+          env | grep -E "(BASE_URI|PASSWORD|base|password)" || echo "No matching env vars found"
+      
       - name: Run Maven tests
-        run: mvn test -DBASE_URL=http://localhost:8000 -DPASSWORD=Test@123
-
+        run: mvn test
+        env:
+          # Explicitly pass environment variables to Maven
+          BASE_URI: ${{ env.BASE_URI }}
+          PASSWORD_VALUE: ${{ env.PASSWORD_VALUE }}
+      
       - name: Upload Extent Report
         uses: actions/upload-artifact@v4
         with:

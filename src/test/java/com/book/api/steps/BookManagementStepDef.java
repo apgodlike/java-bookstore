@@ -34,6 +34,7 @@ public class BookManagementStepDef {
     @Given("I sign up with a random email and valid password")
     public void iSignUpWithRandomEmail() {
 //        email = "user_" + UUID.randomUUID().toString().substring(0, 8) + "@test.com";
+    	Config.debugConfig();
         userData = UserManagement.getUserManagementInstance().generateUserData();
         response = BookManagement.postBookSignup(userData, accessToken);
 
