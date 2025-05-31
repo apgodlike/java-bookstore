@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.book.api.common.AssertUtil;
+import com.book.api.common.Config;
 import com.book.api.common.ExtentReportCommon;
 import com.book.management.BookManagement;
 import com.book.management.UserManagement;
@@ -26,7 +27,7 @@ public class BookManagementStepDef {
     private JSONObject bookRequestBody;
     private String accessToken;
     private String email;
-    private String password = "Test@123";
+    private String password = Config.get("password");
     private int bookId;
     private JSONObject userData;
 

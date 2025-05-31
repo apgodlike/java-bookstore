@@ -12,6 +12,7 @@ jobs:
     
     env:
       BASE_URL: http://localhost:8000
+      PASSWORD: ${{ secrets.PASSSWORD }
 
     steps:
       - name: Checkout repository

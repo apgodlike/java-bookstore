@@ -1,120 +1,118 @@
-Java Bookstore API Test Automation Framework
-📌 Overview
-This repository contains a TestNG-based API automation framework for testing the FastAPI-based Bookstore API. The framework is designed to validate all major API functionalities, including authentication and CRUD operations on books, using RestAssured in Java.
+# Java Bookstore API Testing Framework
 
-It is structured for scalability, maintainability, and CI/CD readiness, and includes test reporting support.
+This repository contains an API automation framework for testing a Python FastAPI backend. It validates core functionalities including all major CRUD operations for a sample bookstore application.
 
-✅ Features
-🔐 Authentication Flow: Automates user signup and login.
+## 📌 Objective
 
-📚 Book Management Tests: Covers all CRUD operations on books.
+The goal of this project is to:
+- Provide comprehensive automated API test coverage.
+- Ensure maintainable and scalable test design.
+- Validate both positive and negative test flows.
+- Generate detailed test execution reports.
+- Integrate testing into a CI pipeline using GitHub Actions.
 
-🔁 Request Chaining: Uses login token from authentication APIs for protected book APIs.
+## 🚀 Tech Stack
 
-⚙️ TestNG Integration: Test execution via testng.xml.
+- **Language**: Java
+- **API Testing Library**: RestAssured
+- **Test Runner**: JUnit + Cucumber
+- **Build Tool**: Maven
+- **CI/CD**: GitHub Actions
 
-📊 Reports: Generates test execution reports using TestNG’s default reporting.
+## 🧪 Features
 
-📁 Modular Design: Clear separation of concerns with utils, constants, payloads, and test classes.
+### ✅ Comprehensive API Coverage
+- Covers all major CRUD operations: Create, Read, Update, Delete.
+- Verifies:
+  - HTTP Status codes
+  - Response payloads
+  - Headers
+  - Error messages
+- Includes both valid and invalid test cases.
+- Implements request chaining (e.g., use created book ID for update/delete).
 
-🧪 Positive & Negative Tests: Covers success and failure scenarios for robustness.
+### 🔁 Reusable & Scalable Design
+- Modular structure using:
+  - Step Definitions
+  - Feature files
+  - Service classes
+  - POJOs for request/response models
+- Configuration via `application.properties` for environment handling.
 
-🔄 CI/CD Ready: Easily integrable with GitHub Actions or other CI tools.
+### 📄 Reporting
+- Generates structured reports using Cucumber's built-in reporting.
+- Easily pluggable with third-party reporting tools like Allure (optional).
 
-🧾 Folder Structure
-bash
-Copy
-Edit
+### ⚙️ CI/CD Integration
+- Configured GitHub Actions workflow to:
+  - Set up Java environment
+  - Resolve dependencies via Maven
+  - Execute the complete test suite
+  - Generate and upload test reports
+
+## 🧭 Project Structure
+
 java-bookstore/
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── utils/         # Utility methods (e.g., token generation)
-│   └── test/
-│       └── java/
-│           ├── apis/         # Book & User test classes
-│           ├── constants/    # Endpoint URLs and test data constants
-│           ├── payloads/     # JSON payload builders for request bodies
-│           └── utils/        # Reusable helper functions
-├── testng.xml                # TestNG suite configuration
-├── pom.xml                   # Maven dependencies
-└── README.md
-🚀 Getting Started
-🛠 Prerequisites
-Java 8 or above
-
-Maven
-
-Git
-
-🔄 Setup
-Clone the repository:
+│
+├── src/test/java/
+│ ├── com.book.api.steps/ # Cucumber step definitions
+│ ├── com.book.api.testRunner/ # JUnit runners for test execution
+│ └── com.book.api.common/ # Request utility classes using RestAssured
+│
+├── src/test/resources/
+│ ├── features/ # Gherkin feature files for scenarios
+│ └── configs/ # Environment-specific configs (if needed)
+│
+├── .github/workflows/ # GitHub Actions CI configuration
+└── README.md # Project documentation
 
 bash
 Copy
 Edit
+
+## 🧪 How to Run Tests Locally
+
+### 1. Clone the Repository
+```bash
 git clone https://github.com/apgodlike/java-bookstore.git
 cd java-bookstore
-Install dependencies:
+2. Set Up the FastAPI Backend
+Follow the instructions in the backend API's README.md to get the FastAPI server running locally (typically at http://127.0.0.1:8000).
 
+3. Run the Test Suite
 bash
 Copy
 Edit
-mvn clean install
-Make sure the FastAPI server is running locally:
+mvn clean test
+4. View Reports
+Cucumber report is generated under: target/
 
-bash
-Copy
-Edit
-uvicorn main:app --reload
-🧪 Running Tests
-With Maven:
-bash
-Copy
-Edit
-mvn test
-With TestNG:
-bash
-Copy
-Edit
-mvn test -DsuiteXmlFile=testng.xml
-📄 Testing Strategy
-✅ Approach
-Each feature (user, books) has a separate test class.
+🔄 CI/CD with GitHub Actions
+This project includes a .github/workflows/ci.yml file that:
 
-Auth token is dynamically generated via login API and reused using request chaining.
+Runs on every push or PR.
 
-Tests are data-driven using constants and helper payloads.
+Installs Java and Maven.
 
-Proper assertions on status codes, payloads, and headers.
+Builds the project and runs tests.
 
-📌 Reliability & Maintenance
-Reusable utilities to avoid duplication.
+Publishes reports as artifacts.
 
-Constants and payloads externalized for easy updates.
+💡 Testing Strategy
+Behavior-Driven: Tests written using Gherkin syntax in .feature files for clarity.
 
-Clear folder/module separation for maintainability.
+Reliability: Each test resets state using teardown logic and isolated test data.
 
-⚠️ Challenges
-Token Management: Solved via centralized token generation utility.
+Maintainability: Modular classes and data models allow easy updates and additions.
 
-Request Sequencing: Managed using shared state across test classes (e.g., book ID from creation used for update/delete).
+Challenges:
 
-📝 Sample Test Scenarios Covered
-API	Scenario	Type
-/signup	Register with valid data	Positive
-/signup	Register with existing user	Negative
-/login	Login with correct credentials	Positive
-/login	Login with invalid password	Negative
-/books/	Create, Get, Update, Delete book	Positive
-/books/{id}	Invalid ID operations	Negative
+Ensuring proper synchronization with the FastAPI backend (resolved using retries).
 
-📋 Sample Report
-A sample TestNG report is generated at:
+Managing dynamic data (solved using runtime response parsing and chaining).
 
-bash
-Copy
-Edit
-java-bookstore/test-output/index.html
-Open in browser to view pass/fail status and stack traces.
+📄 Sample Report
+You can find a sample test report in the target/cucumber-reports/ directory after test execution.
 
+📬 Contact
+For any queries or suggestions, please reach out via GitHub Issues or contact the repo owner.
