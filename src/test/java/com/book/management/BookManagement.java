@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 
 import com.book.api.common.ApiRequest;
 import com.book.api.common.Common;
+import com.book.api.common.Config;
 import com.book.api.common.ExtentReportCommon;
 import com.book.api.common.AssertUtil;
 
@@ -17,7 +18,7 @@ public class BookManagement {
     public static Response postBookSignup(JSONObject userData, String accessToken) {
         Common common = Common.getCommonInstance();
         ApiRequest apiRequest = new ApiRequest();
-        apiRequest.setBaseUri("http://127.0.0.1:8000");
+        apiRequest.setBaseUri(Config.get("base.uri"));
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + accessToken);
@@ -35,7 +36,7 @@ public class BookManagement {
         Common common = Common.getCommonInstance();
 
         ApiRequest apiRequest = new ApiRequest();
-        apiRequest.setBaseUri("http://127.0.0.1:8000");
+        apiRequest.setBaseUri(Config.get("base.uri"));
         Map<String, String> headers = new HashMap<>();
         apiRequest.setBody(userData);
         headers.put("Content-Type", "application/json");
@@ -53,7 +54,7 @@ public class BookManagement {
         Common common = Common.getCommonInstance();
 
         ApiRequest apiRequest = new ApiRequest();
-        apiRequest.setBaseUri("http://127.0.0.1:8000");
+        apiRequest.setBaseUri(Config.get("base.uri"));
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + accessToken);
@@ -69,7 +70,7 @@ public class BookManagement {
         Common common = Common.getCommonInstance();
 
         ApiRequest apiRequest = new ApiRequest();
-        apiRequest.setBaseUri("http://127.0.0.1:8000");
+        apiRequest.setBaseUri(Config.get("base.uri"));
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + accessToken);
@@ -85,7 +86,7 @@ public class BookManagement {
         Common common = Common.getCommonInstance();
 
         ApiRequest apiRequest = new ApiRequest();
-        apiRequest.setBaseUri("http://127.0.0.1:8000");
+        apiRequest.setBaseUri(Config.get("base.uri"));
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + accessToken);
@@ -101,7 +102,7 @@ public class BookManagement {
         Common common = Common.getCommonInstance();
 
         ApiRequest apiRequest = new ApiRequest();
-        apiRequest.setBaseUri("http://127.0.0.1:8000");
+        apiRequest.setBaseUri(Config.get("base.uri"));
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + accessToken);
@@ -118,7 +119,7 @@ public class BookManagement {
         Common common = Common.getCommonInstance();
 
         ApiRequest apiRequest = new ApiRequest();
-        apiRequest.setBaseUri("http://127.0.0.1:8000");
+        apiRequest.setBaseUri(Config.get("base.uri"));
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + accessToken);
@@ -135,7 +136,7 @@ public class BookManagement {
         Common common = Common.getCommonInstance();
 
         ApiRequest apiRequest = new ApiRequest();
-        apiRequest.setBaseUri("http://127.0.0.1:8000");
+        apiRequest.setBaseUri(Config.get("base.uri"));
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + accessToken);
