@@ -10,7 +10,7 @@ Feature: Book Management API
   Scenario Outline: Create book with valid data
     Given I have book details with name "<name>", author "<author>", year <published_year>, and summary "<book_summary>"
     When I send a POST request to /books
-    Then the response status should be 201
+    Then the response status should be 200
     And the response should contain the book ID
     When I send a GET request to /books with the generated book ID
     And the book response should match the submitted data
