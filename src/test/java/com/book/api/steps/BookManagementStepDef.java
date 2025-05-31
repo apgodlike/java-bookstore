@@ -27,7 +27,7 @@ public class BookManagementStepDef {
     private JSONObject bookRequestBody;
     private String accessToken;
     private String email;
-    private String password = Config.get("password");
+    private String password = Config.get("password.value");
     private int bookId;
     private JSONObject userData;
 
