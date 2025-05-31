@@ -9,12 +9,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     environment: ci-test
-    
+
     env:
       BASE_URL: http://localhost:8000
-      PASSWORD: ${{ secrets.PASSSWORD_VALUE }}
+      PASSWORD: ${{ secrets.PASSWORD_VALUE }}
 
     steps:
       - name: Checkout repository
@@ -53,13 +53,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-
+      # Optional: Comment out if secret is sensitive
       - name: Debug env
-        run: echo "PASSWORD: $PASSWORD"
-        
+        run: echo "PASSWORD is $PASSWORD"
+
       - name: Run Maven tests
         run: mvn test
-        
+
       - name: Upload Extent Report
         uses: actions/upload-artifact@v4
         with:
