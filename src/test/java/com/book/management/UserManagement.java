@@ -25,7 +25,6 @@ public class UserManagement {
 	public JSONObject generateUserData() {
 		
 		email = "user_" + UUID.randomUUID().toString().substring(0, 8) + "@test.com";
-		ExtentReportCommon.getTestStep().fail(password);
 		JSONObject user = new JSONObject();
 		user.put("email", email);
 		user.put("password", password);

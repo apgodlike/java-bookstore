@@ -27,19 +27,16 @@ public class Config {
         String envValue = System.getenv(envKey);
         
         if (envValue != null && !envValue.trim().isEmpty()) {
-            System.out.println("Found environment variable " + envKey + " = " + envValue);
             return envValue;
         }
         
         envValue = System.getenv(key);
         if (envValue != null && !envValue.trim().isEmpty()) {
-            System.out.println("Found environment variable " + key + " = " + envValue);
             return envValue;
         }
         
         String propValue = props.getProperty(key);
         if (propValue != null) {
-            System.out.println("Found property " + key + " = " + propValue);
             return propValue;
         }
         

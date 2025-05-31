@@ -39,19 +39,15 @@ public class BookManagementStepDef {
 
     @Given("I log in with the same credentials")
     public void iLogInWithSameCredentials() {
-        Response loginResponse = BookManagement.postBookLogin(userData, accessToken);
-        accessToken = loginResponse.jsonPath().getString("access_token");
+        response = BookManagement.postBookLogin(userData, accessToken);
 
-        AssertUtil.assertEquals("Login response status", 200, loginResponse.getStatusCode());
-        AssertUtil.assertEquals("Access token present", false, accessToken == null || accessToken.isEmpty());
+        AssertUtil.assertEquals("Login response status", 200, response.getStatusCode());
     }
 
     @Given("I store the access token for authorization")
     public void iStoreAccessToken() {
-        request = RestAssured.given()
-                .baseUri("http://127.0.0.1:8000")
-                .header("Authorization", "Bearer " + accessToken)
-                .header("Content-Type", "application/json");
+    	accessToken = response.jsonPath().getString("access_token");
+    	AssertUtil.assertEquals("Access token present", false, accessToken == null || accessToken.isEmpty());
         ExtentReportCommon.getTestStep().pass("Stored access token for authorization");
     }
 
