@@ -26,14 +26,14 @@ public class BookManagementStepDef {
     private Response response;
     private JSONObject bookRequestBody;
     private String accessToken;
-    private String email;
-    private String password = Config.get("password.value");
+//    private String email;
+//    private String password = Config.get("password.value");
     private int bookId;
     private JSONObject userData;
 
     @Given("I sign up with a random email and valid password")
     public void iSignUpWithRandomEmail() {
-        email = "user_" + UUID.randomUUID().toString().substring(0, 8) + "@test.com";
+//        email = "user_" + UUID.randomUUID().toString().substring(0, 8) + "@test.com";
         userData = UserManagement.getUserManagementInstance().generateUserData();
         response = BookManagement.postBookSignup(userData, accessToken);
 
