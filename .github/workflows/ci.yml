@@ -14,9 +14,12 @@ jobs:
     
     env:
       BASE_URL: http://localhost:8000
-      PASSWORD: ${{ secrets.PASSSWORD }}
+      PASSWORD: ${{ secrets.PASSSWORD_VALUE }}
 
     steps:
+      - name: Debug env
+        run: echo "PASSWORD: $PASSWORD"
+        
       - name: Checkout repository
         uses: actions/checkout@v3
 
