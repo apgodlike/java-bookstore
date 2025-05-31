@@ -13,7 +13,7 @@ jobs:
     environment: ci-test
 
     env:
-      BASE_URL: http://localhost:8000
+      BASE_URI: http://localhost:8000
       PASSWORD_VALUE: Test@123
 
     steps:
