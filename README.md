@@ -103,7 +103,7 @@ The Python FastAPI backend needs to be running before executing tests. You can e
 - Use the provided Docker setup (if available)
 - The CI pipeline automatically handles backend deployment
 
-**Note**: Ensure the backend is accessible at the configured base URL in `config.properties`
+**Note**: Ensure the backend is accessible at the configured base URL in `config.properties`. Rename config.properties.sample to config.properties
 
 ### 3. Run the Test Suite
 ```bash
